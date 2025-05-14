@@ -1,0 +1,22 @@
+\documentclass{standalone}
+\usepackage{circuitikz}
+\begin{document}
+\begin{circuitikz} 
+	\draw
+	(0,0) node[left] {} to[short, o-] (0.50,0)      % 入力端子A1から抵抗まで
+				to[R=$R$] (4,0)                            % 抵抗R
+				to[C=$C$] (4,-2)                            % コンデンサC
+				to[short, *-o] (5.5,-2) node[right] {};   % 出力端子B2へ
+	\draw
+	(0,-2) node[left] {} to[short,o-] (4,-2) node[right] {};   % 入力端子A2と出力端子B1の接続
+	\draw
+	(5.5,0) node[left] {} to[short,o-*] (4,0) node[right] {};
+	\draw[->, thick] (0,-1.7) -- (0,-0.3);  % 下のA2から上のA1に向かう矢印
+	\node[above] at (-0.5,-1.4) {$x(t)$};  % 矢印に対応する入力 x(t)
+	\draw[->, thick] (5.5,-1.7) -- (5.5,-0.3);  % 下のA2から上のA1に向かう矢印
+	\node[above] at (6,-1.4) {$y(t)$}; 
+	% ループ電流の描画  % 完全な楕円の描画
+	\draw[->, thick] (0.5,-0.7) arc[start angle=150,end angle=-150,x radius=1.5, y radius = 0.75];
+	\node at (1.85,-1.15) {$I(t)$};  % ループ電流Iのラベル
+\end{circuitikz}
+\end{document}
